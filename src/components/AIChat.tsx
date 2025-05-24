@@ -30,7 +30,7 @@ const AIChat = () => {
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-light mb-4 text-foreground">
-            AI Assistant
+            AI Assistant (WIP 🚧 )
           </h2>
           <p className="text-muted-foreground">
             Ask anything and see the magic happen
@@ -48,7 +48,7 @@ const AIChat = () => {
                 className="min-h-[120px] border-0 bg-background/50 text-base resize-none focus:ring-1 focus:ring-primary/20"
               />
               
-              <div className="flex justify-end">
+              <div className="flex justify-center md:justify-end">
                 <Button 
                   onClick={handleSubmit}
                   disabled={!inputText.trim()}
