@@ -22,7 +22,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <h1 className="text-xl font-light text-foreground">
-              DC
+              🎲
             </h1>
           </div>
 
