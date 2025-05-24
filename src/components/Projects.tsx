@@ -41,11 +41,13 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 animate-fade-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+    <section id="projects" className="py-32 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-20 animate-fade-up">
+          <h2 className="text-4xl font-light mb-6 text-foreground">
+            Featured Projects
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light">
             A showcase of my recent work, from AI-powered applications to full-stack web solutions.
           </p>
         </div>
@@ -54,31 +56,29 @@ const Projects = () => {
           {projects.map((project, index) => (
             <Card 
               key={project.title} 
-              className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 ${
-                project.featured ? 'border-2 border-blue-200 dark:border-blue-800' : ''
-              }`}
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className="group hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 border-0 bg-card/30 backdrop-blur-sm"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <CardHeader>
+              <CardHeader className="pb-4">
                 <div className="flex items-start justify-between">
-                  <CardTitle className="text-xl group-hover:text-blue-600 transition-colors">
+                  <CardTitle className="text-xl font-light group-hover:text-primary/80 transition-colors">
                     {project.title}
                   </CardTitle>
                   {project.featured && (
-                    <Badge className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+                    <Badge className="bg-primary/10 text-primary border-0 font-light">
                       Featured
                     </Badge>
                   )}
                 </div>
               </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-4 leading-relaxed">
+              <CardContent className="pt-0">
+                <p className="text-muted-foreground mb-6 leading-relaxed font-light">
                   {project.description}
                 </p>
                 
                 <div className="flex flex-wrap gap-2 mb-6">
                   {project.tech.map((tech) => (
-                    <Badge key={tech} variant="outline" className="text-xs">
+                    <Badge key={tech} variant="outline" className="text-xs font-light border-foreground/10">
                       {tech}
                     </Badge>
                   ))}
@@ -88,7 +88,7 @@ const Projects = () => {
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    className="flex items-center gap-2 hover:bg-blue-50 dark:hover:bg-blue-950"
+                    className="flex items-center gap-2 font-light border-foreground/10 hover:bg-foreground/5"
                   >
                     <ExternalLink className="h-4 w-4" />
                     Live Demo
@@ -96,7 +96,7 @@ const Projects = () => {
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    className="flex items-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-950"
+                    className="flex items-center gap-2 font-light border-foreground/10 hover:bg-foreground/5"
                   >
                     <Github className="h-4 w-4" />
                     Code
@@ -107,11 +107,11 @@ const Projects = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <Button 
             variant="outline" 
             size="lg"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 text-white border-none hover:from-blue-700 hover:to-purple-700"
+            className="font-light border-foreground/10 hover:bg-foreground/5 px-8"
           >
             View All Projects
           </Button>

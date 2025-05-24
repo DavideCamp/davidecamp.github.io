@@ -9,21 +9,23 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 animate-fade-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">About Me</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+    <section id="about" className="py-32 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-20 animate-fade-up">
+          <h2 className="text-4xl font-light mb-6 text-foreground">
+            About Me
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
             Passionate developer with 5+ years of experience building scalable applications and AI-powered solutions.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           <div className="animate-slide-left">
-            <Card className="p-8 border-2 hover:border-blue-200 dark:hover:border-blue-800 transition-all duration-300">
-              <CardContent className="p-0">
-                <h3 className="text-2xl font-bold mb-6">My Journey</h3>
-                <div className="space-y-4 text-muted-foreground">
+            <Card className="border-0 shadow-sm bg-card/30 backdrop-blur-sm">
+              <CardContent className="p-10">
+                <h3 className="text-2xl font-light mb-8 text-foreground">My Journey</h3>
+                <div className="space-y-6 text-muted-foreground font-light leading-relaxed">
                   <p>
                     I started my journey in software development with a fascination for how technology 
                     can solve real-world problems. Over the years, I've evolved from a curious beginner 
@@ -44,15 +46,15 @@ const About = () => {
             </Card>
           </div>
 
-          <div className="animate-fade-up">
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold mb-6">Skills & Technologies</h3>
+          <div className="animate-fade-up space-y-8">
+            <div>
+              <h3 className="text-2xl font-light mb-8 text-foreground">Skills & Technologies</h3>
               <div className="flex flex-wrap gap-3">
                 {skills.map((skill, index) => (
                   <Badge 
                     key={skill} 
-                    variant="secondary" 
-                    className="px-4 py-2 text-sm hover:bg-blue-100 dark:hover:bg-blue-900 transition-colors duration-200"
+                    variant="outline" 
+                    className="px-4 py-2 text-sm font-light border-foreground/10 hover:bg-foreground/5 transition-colors duration-200"
                     style={{ animationDelay: `${index * 0.1}s` }}
                   >
                     {skill}
@@ -61,10 +63,10 @@ const About = () => {
               </div>
             </div>
 
-            <Card className="p-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-950 dark:to-purple-950 border-blue-200 dark:border-blue-800">
-              <CardContent className="p-0">
-                <h4 className="text-lg font-semibold mb-3">What I'm Currently Working On</h4>
-                <ul className="space-y-2 text-muted-foreground">
+            <Card className="border-0 bg-muted/20 backdrop-blur-sm">
+              <CardContent className="p-8">
+                <h4 className="text-lg font-light mb-4 text-foreground">What I'm Currently Working On</h4>
+                <ul className="space-y-3 text-muted-foreground font-light">
                   <li>• Building AI-powered web applications</li>
                   <li>• Contributing to open-source projects</li>
                   <li>• Learning advanced machine learning techniques</li>

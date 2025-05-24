@@ -41,11 +41,13 @@ const Blog = () => {
   ];
 
   return (
-    <section id="blog" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 animate-fade-up">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4">Latest Blog Posts</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+    <section id="blog" className="py-32 px-4 sm:px-6 lg:px-8 bg-muted/20">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-20 animate-fade-up">
+          <h2 className="text-4xl font-light mb-6 text-foreground">
+            Latest Blog Posts
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light">
             Insights, tutorials, and thoughts on software development, AI, and emerging technologies.
           </p>
         </div>
@@ -54,39 +56,33 @@ const Blog = () => {
           {posts.map((post, index) => (
             <Card 
               key={post.title} 
-              className={`group hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer ${
-                post.featured ? 'border-2 border-purple-200 dark:border-purple-800' : ''
-              }`}
+              className="group hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer border-0 bg-card/50 backdrop-blur-sm"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <CardHeader>
-                <div className="flex items-start justify-between mb-2">
+              <CardHeader className="pb-4">
+                <div className="flex items-start justify-between mb-3">
                   <Badge 
                     variant="outline" 
-                    className={`${
-                      post.featured 
-                        ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white border-none' 
-                        : ''
-                    }`}
+                    className="font-light border-foreground/10 text-xs"
                   >
                     {post.category}
                   </Badge>
                   {post.featured && (
-                    <Badge className="bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+                    <Badge className="bg-primary/10 text-primary border-0 font-light">
                       Featured
                     </Badge>
                   )}
                 </div>
-                <CardTitle className="text-xl group-hover:text-purple-600 transition-colors line-clamp-2">
+                <CardTitle className="text-xl font-light group-hover:text-primary/80 transition-colors line-clamp-2">
                   {post.title}
                 </CardTitle>
               </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-4 leading-relaxed line-clamp-3">
+              <CardContent className="pt-0">
+                <p className="text-muted-foreground mb-6 leading-relaxed font-light line-clamp-3">
                   {post.excerpt}
                 </p>
                 
-                <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                <div className="flex items-center justify-between text-sm text-muted-foreground mb-6 font-light">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1">
                       <Calendar className="h-4 w-4" />
@@ -101,7 +97,7 @@ const Blog = () => {
 
                 <Button 
                   variant="ghost" 
-                  className="group-hover:bg-purple-50 dark:group-hover:bg-purple-950 w-full justify-between"
+                  className="group-hover:bg-foreground/5 w-full justify-between font-light"
                 >
                   Read More
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -111,11 +107,11 @@ const Blog = () => {
           ))}
         </div>
 
-        <div className="text-center mt-12">
+        <div className="text-center mt-16">
           <Button 
             variant="outline" 
             size="lg"
-            className="bg-gradient-to-r from-purple-600 to-pink-600 text-white border-none hover:from-purple-700 hover:to-pink-700"
+            className="font-light border-foreground/10 hover:bg-foreground/5 px-8"
           >
             View All Posts
           </Button>
