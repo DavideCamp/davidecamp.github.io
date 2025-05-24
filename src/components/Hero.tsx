@@ -12,24 +12,24 @@ const Hero = () => {
 
   return (
     <section className="min-h-screen flex items-center justify-center pt-16">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="animate-fade-up">
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent">
+          <h1 className="text-6xl md:text-8xl font-extralight mb-8 tracking-tight text-foreground">
             John Doe
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+          <p className="text-xl md:text-2xl font-light text-muted-foreground mb-12 tracking-wide">
             Software Developer & AI Enthusiast
           </p>
-          <p className="text-lg text-muted-foreground/80 mb-12 max-w-3xl mx-auto">
-            Building innovative solutions at the intersection of technology and creativity. 
-            Passionate about AI, web development, and creating meaningful digital experiences.
+          <p className="text-base text-muted-foreground/70 mb-16 max-w-xl mx-auto leading-relaxed">
+            Building innovative solutions at the intersection of technology and creativity.
           </p>
           <Button 
             onClick={scrollToChat}
+            variant="outline"
             size="lg"
-            className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 transform hover:scale-105"
+            className="font-light border-foreground/20 hover:bg-foreground hover:text-background transition-all duration-300"
           >
-            Try My AI Tool
+            Try AI Tool
             <ArrowDown className="ml-2 h-4 w-4" />
           </Button>
         </div>
