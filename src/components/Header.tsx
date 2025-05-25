@@ -1,12 +1,15 @@
 
 import { useState } from 'react';
 import { useTheme } from 'next-themes';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Sun, Moon, Menu, X, User, LogOut } from 'lucide-react';
+import { useAuth } from '@/contexts/AuthContext';
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, signOut, loading } = useAuth();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -16,14 +19,19 @@ const Header = () => {
     }
   };
 
+  const handleSignOut = async () => {
+    await signOut();
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <h1 className="text-xl font-light text-foreground">
+            <Link to="/" className="text-xl font-light text-foreground">
               🎲
-            </h1>
+            </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -52,6 +60,36 @@ const Header = () => {
             >
               Contact
             </button>
+            
+            {!loading && (
+              user ? (
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-2 text-foreground/60">
+                    <User className="h-4 w-4" />
+                    <span className="text-sm font-light">
+                      {user.email}
+                    </span>
+                  </div>
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={handleSignOut}
+                    className="text-foreground/60 hover:text-foreground font-light"
+                  >
+                    <LogOut className="h-4 w-4 mr-2" />
+                    Sign Out
+                  </Button>
+                </div>
+              ) : (
+                <Link
+                  to="/auth"
+                  className="text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
+                >
+                  Sign In
+                </Link>
+              )
+            )}
+            
             <Button
               variant="ghost"
               size="icon"
@@ -111,6 +149,34 @@ const Header = () => {
               >
                 Contact
               </button>
+              
+              {!loading && (
+                user ? (
+                  <div className="space-y-4 pt-2 border-t border-border/30">
+                    <div className="flex items-center space-x-2 text-foreground/60">
+                      <User className="h-4 w-4" />
+                      <span className="text-sm font-light">
+                        {user.email}
+                      </span>
+                    </div>
+                    <button
+                      onClick={handleSignOut}
+                      className="flex items-center space-x-2 text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
+                    >
+                      <LogOut className="h-4 w-4" />
+                      <span>Sign Out</span>
+                    </button>
+                  </div>
+                ) : (
+                  <Link
+                    to="/auth"
+                    className="text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light pt-2 border-t border-border/30"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Sign In
+                  </Link>
+                )
+              )}
             </nav>
           </div>
         )}
