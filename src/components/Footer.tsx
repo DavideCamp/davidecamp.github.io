@@ -15,7 +15,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12">
           <div>
             <h3 className="text-2xl font-light text-foreground mb-6">
-              John Doe
+              Davide Campana
             </h3>
             <p className="text-muted-foreground mb-6 leading-relaxed font-light">
               Software Developer & AI Enthusiast building innovative solutions 
@@ -67,9 +67,8 @@ const Footer = () => {
           <div>
             <h4 className="font-light mb-6 text-foreground">Get in Touch</h4>
             <div className="space-y-2 text-muted-foreground font-light mb-6">
-              <p>john@johndoe.dev</p>
-              <p>+1 (555) 123-4567</p>
-              <p>San Francisco, CA</p>
+              <p>davidecampana@icloud.it</p>
+              <p>Rome, IT</p>
             </div>
             <Button 
               onClick={scrollToTop}
@@ -82,7 +81,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border/30 mt-12 pt-8 text-center text-muted-foreground font-light">
-          <p>&copy; {currentYear} John Doe. All rights reserved.</p>
+          <p>&copy; {currentYear} Davide Campana. All rights reserved.</p>
         </div>
       </div>
     </footer>
