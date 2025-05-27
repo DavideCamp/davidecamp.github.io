@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { useTheme } from 'next-themes';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sun, Moon, Menu, X, User, LogOut } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
@@ -10,12 +10,19 @@ const Header = () => {
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, signOut, loading } = useAuth();
+  const location = useLocation();
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMenuOpen(false);
+    // Only scroll if we're on the home page
+    if (location.pathname === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setIsMenuOpen(false);
+      }
+    } else {
+      // Navigate to home page with hash
+      window.location.href = `/#${sectionId}`;
     }
   };
 
@@ -48,12 +55,12 @@ const Header = () => {
             >
               Projects
             </button>
-            <button
-              onClick={() => scrollToSection('blog')}
+            <Link
+              to="/blog"
               className="text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
             >
               Blog
-            </button>
+            </Link>
             <button
               onClick={() => scrollToSection('contact')}
               className="text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
@@ -137,12 +144,13 @@ const Header = () => {
               >
                 Projects
               </button>
-              <button
-                onClick={() => scrollToSection('blog')}
+              <Link
+                to="/blog"
                 className="text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Blog
-              </button>
+              </Link>
               <button
                 onClick={() => scrollToSection('contact')}
                 className="text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"

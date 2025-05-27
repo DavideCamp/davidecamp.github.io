@@ -30,7 +30,7 @@ const AIChat = () => {
       <div className="max-w-2xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-light mb-4 text-foreground">
-            AI Assistant (WIP 🚧 )
+            AI Assistant (Work in Progress 🚧 )
           </h2>
           <p className="text-muted-foreground">
             Ask anything and see the magic happen

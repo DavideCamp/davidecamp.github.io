@@ -2,9 +2,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
+import { set } from 'date-fns';
 
 interface AuthContextType {
   user: User | null;
+  userProfile: any;
   session: Session | null;
   loading: boolean;
   signOut: () => Promise<void>;
@@ -22,8 +24,27 @@ export const useAuth = () => {
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [userProfile, setUserProfile] = useState<any>(null);
   const [session, setSession] = useState<Session | null>(null);
   const [loading, setLoading] = useState(true);
+
+  function fetchUserProfile(user: User) {
+    supabase
+      .from('profiles')
+      .select('*')
+      .eq('email', user.email)
+      .single()
+      .then(({ data, error }) => {
+        if (error) {
+          console.error('Error fetching user profile:', error);
+        } else {
+          console.log('User profile data:', data);
+          setUserProfile(data);
+        }
+      });
+  
+  }
+  
 
   useEffect(() => {
     // Set up auth state listener first
@@ -40,6 +61,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
+      fetchUserProfile(session?.user ?? null);
     });
 
     return () => subscription.unsubscribe();
@@ -52,6 +74,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const value = {
     user,
+    userProfile,
     session,
     loading,
     signOut,
@@ -59,3 +82,4 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
+
