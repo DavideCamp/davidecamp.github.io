@@ -4,8 +4,8 @@ import { Badge } from '@/components/ui/badge';
 
 const About = () => {
   const skills = [
-    'JavaScript', 'TypeScript', 'React', 'Node.js', 'Python', 'AI/ML',
-    'Django', 'Tailwind CSS', 'PostgreSQL', 'AWS', 'Docker'
+    'JavaScript', 'TypeScript', 'React', 'React-native', 'Python', 'AI/ML',
+    'Django', 'PostgreSQL', 'AWS', 'Docker'
   ];
 
   return (
@@ -16,7 +16,7 @@ const About = () => {
             About Me
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light leading-relaxed">
-            Passionate developer with 3 years of experience building scalable applications and AI-powered solutions.
+            Passionate developer with 3 years of experience building scalable applications.
           </p>
         </div>
 
@@ -28,13 +28,11 @@ const About = () => {
                 <div className="space-y-6 text-muted-foreground font-light leading-relaxed">
                   <p>
                     I started my journey in software development with a fascination for how technology
-                    can solve real-world problems. Over the years, I've evolved from a curious beginner
+                    can solve real-world problems. Over the years, I've evolved from a University student of Computer Science
                     to a seasoned developer specializing in full-stack web development and AI integration.
                   </p>
                   <p>
-                    My expertise spans modern web technologies, with a particular focus on React, Node.js,
-                    and Python. I'm passionate about creating intuitive user experiences and building
-                    robust, scalable backend systems.
+                    My expertise spans modern web technologies, with a particular focus on React and Django. 
                   </p>
                   <p>
                     Recently, I've been diving deep into AI and machine learning, exploring how these

@@ -3,43 +3,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
+import { posts } from '@/hooks/use-blog';
 
 const Blog = () => {
-  const posts = [
-    {
-      title: "Building AI-Powered Web Applications: A Complete Guide",
-      excerpt: "Explore how to integrate AI capabilities into modern web applications, from setup to deployment with practical examples.",
-      date: "2024-01-15",
-      readTime: "8 min read",
-      category: "AI Development",
-      featured: true
-    },
-    {
-      title: "The Future of Web Development: Trends to Watch in 2024",
-      excerpt: "Discover the emerging technologies and methodologies that are shaping the future of web development.",
-      date: "2024-01-10",
-      readTime: "6 min read",
-      category: "Web Development",
-      featured: false
-    },
-    {
-      title: "Optimizing React Performance: Advanced Techniques",
-      excerpt: "Learn advanced optimization techniques for React applications including code splitting, memoization, and performance monitoring.",
-      date: "2024-01-05",
-      readTime: "12 min read",
-      category: "React",
-      featured: true
-    },
-    {
-      title: "Machine Learning in the Browser: WebAssembly and TensorFlow.js",
-      excerpt: "Explore how to run machine learning models directly in the browser using modern web technologies.",
-      date: "2023-12-28",
-      readTime: "10 min read",
-      category: "Machine Learning",
-      featured: false
-    }
-  ];
-
   return (
     <section id="blog" className="py-32 px-4 sm:px-6 lg:px-8 bg-muted/20">
       <div className="max-w-5xl mx-auto">
@@ -54,15 +20,15 @@ const Blog = () => {
 
         <div className="grid md:grid-cols-2 gap-8">
           {posts.map((post, index) => (
-            <Card 
-              key={post.title} 
+            <Card
+              key={post.title}
               className="group hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer border-0 bg-card/50 backdrop-blur-sm"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <CardHeader className="pb-4">
                 <div className="flex items-start justify-between mb-3">
-                  <Badge 
-                    variant="outline" 
+                  <Badge
+                    variant="outline"
                     className="font-light border-foreground/10 text-xs"
                   >
                     {post.category}
@@ -81,7 +47,7 @@ const Blog = () => {
                 <p className="text-muted-foreground mb-6 leading-relaxed font-light line-clamp-3">
                   {post.excerpt}
                 </p>
-                
+
                 <div className="flex items-center justify-between text-sm text-muted-foreground mb-6 font-light">
                   <div className="flex items-center gap-4">
                     <div className="flex items-center gap-1">
@@ -95,8 +61,8 @@ const Blog = () => {
                   </div>
                 </div>
 
-                <Button 
-                  variant="ghost" 
+                <Button
+                  variant="ghost"
                   className="group-hover:bg-foreground/5 w-full justify-between font-light"
                 >
                   Read More
@@ -108,8 +74,8 @@ const Blog = () => {
         </div>
 
         <div className="text-center mt-16">
-          <Button 
-            variant="outline" 
+          <Button
+            variant="outline"
             size="lg"
             className="font-light border-foreground/10 hover:bg-foreground/5 px-8"
           >

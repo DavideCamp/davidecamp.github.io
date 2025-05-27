@@ -14,11 +14,11 @@ const Hero = () => {
     <section className="min-h-screen flex items-center justify-center pt-16">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div className="animate-fade-up">
-          <h1 className="text-5xl md:text-xl font-extralight mb-12 tracking-tight text-foreground">
+          <h1 className="text-5xl md:text-7xl font-extralight mb-12 tracking-tight text-foreground">
             Davide Campana
           </h1>
           <p className="text-xl md:text-2xl font-light text-muted-foreground mb-16 tracking-wide">
-            Software Developer & AI Enthusiast
+            Software Developer
           </p>
           <p className="text-lg text-muted-foreground/80 mb-20 max-w-2xl mx-auto leading-relaxed font-light">
             Building innovative solutions at the intersection of technology and creativity.
