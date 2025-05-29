@@ -1,9 +1,9 @@
 
 import { useState } from 'react';
 import { useTheme } from 'next-themes';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Sun, Moon, Menu, X, User, LogOut } from 'lucide-react';
+import { Sun, Moon, Menu, X, User, LogOut, Github } from 'lucide-react';
 import { useAuth } from '@/contexts/AuthContext';
 
 const Header = () => {
@@ -11,25 +11,79 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, signOut, loading } = useAuth();
   const location = useLocation();
-
-  const scrollToSection = (sectionId: string) => {
-    // Only scroll if we're on the home page
-    if (location.pathname === '/') {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-        setIsMenuOpen(false);
-      }
-    } else {
-      // Navigate to home page with hash
-      window.location.href = `/#${sectionId}`;
-    }
-  };
+  const navigate = useNavigate();
 
   const handleSignOut = async () => {
     await signOut();
     setIsMenuOpen(false);
   };
+
+  const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+    setIsMenuOpen(false);
+  };
+
+  const menuItems = [
+    { label: 'About', sectionId: 'about' },
+    { label: 'Projects', sectionId: 'projects' },
+    { label: 'Blog', url: '/blog' },
+    { label: 'Contact', sectionId: 'contact' },
+  ];
+
+  const renderMenuItems = (className: string) => (
+    <nav className={className}>
+      {menuItems.map((menuItem) => (
+        <button
+          key={menuItem.label}
+          onClick={() => (menuItem.url ? navigate(menuItem.url) : scrollToSection(menuItem.sectionId))}
+          className="text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
+        >
+          {menuItem.label}
+        </button>
+      ))}
+    </nav>
+  );
+
+  const renderAuthButton = (style?: string) => (
+    <div className={`${style} space-y-4 border-t border-border/30`}>
+      {user ? (
+        <>
+          <div className="flex items-center space-x-2 text-foreground/60">
+            <User className="h-4 w-4" />
+            <span className="text-sm font-light">{user.email}</span>
+          </div>
+          <button
+            onClick={handleSignOut}
+            className="flex items-center space-x-2 text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
+          >
+            <LogOut className="h-4 w-4" />
+            <span>Sign Out</span>
+          </button>
+        </>
+      ) : (
+        <Link
+          to="/auth"
+          className="text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          Sign In
+        </Link>
+      )}
+    </div>
+  );
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/30">
@@ -43,60 +97,16 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection('about')}
-              className="text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
+            {renderMenuItems('space-x-8')}
+            {renderAuthButton()}
+            <a
+              href="https://github.com/davideCamp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground/60 hover:text-foreground transition-colors duration-200"
             >
-              About
-            </button>
-            <button
-              onClick={() => scrollToSection('projects')}
-              className="text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
-            >
-              Projects
-            </button>
-            <Link
-              to="/blog"
-              className="text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
-            >
-              Blog
-            </Link>
-            <button
-              onClick={() => scrollToSection('contact')}
-              className="text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
-            >
-              Contact
-            </button>
-            
-            {!loading && (
-              user ? (
-                <div className="flex items-center space-x-4">
-                  <div className="flex items-center space-x-2 text-foreground/60">
-                    <User className="h-4 w-4" />
-                    <span className="text-sm font-light">
-                      {user.email}
-                    </span>
-                  </div>
-                  <Button
-                    variant="ghost"
-                    size="sm"
-                    onClick={handleSignOut}
-                    className="text-foreground/60 hover:text-foreground font-light"
-                  >
-                    <LogOut className="h-4 w-4 mr-2" />
-                    Sign Out
-                  </Button>
-                </div>
-              ) : (
-                <Link
-                  to="/auth"
-                  className="text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
-                >
-                  Sign In
-                </Link>
-              )
-            )}
-            
+              <Github className="h-5 w-5" />
+            </a>
             <Button
               variant="ghost"
               size="icon"
@@ -131,61 +141,18 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden border-t border-border/30 py-4 animate-fade-up">
-            <nav className="flex flex-col space-y-4">
-              <button
-                onClick={() => scrollToSection('about')}
-                className="text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
-              >
-                About
-              </button>
-              <button
-                onClick={() => scrollToSection('projects')}
-                className="text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
-              >
-                Projects
-              </button>
-              <Link
-                to="/blog"
-                className="text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Blog
-              </Link>
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
-              >
-                Contact
-              </button>
-              
-              {!loading && (
-                user ? (
-                  <div className="space-y-4 pt-2 border-t border-border/30">
-                    <div className="flex items-center space-x-2 text-foreground/60">
-                      <User className="h-4 w-4" />
-                      <span className="text-sm font-light">
-                        {user.email}
-                      </span>
-                    </div>
-                    <button
-                      onClick={handleSignOut}
-                      className="flex items-center space-x-2 text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
-                    >
-                      <LogOut className="h-4 w-4" />
-                      <span>Sign Out</span>
-                    </button>
-                  </div>
-                ) : (
-                  <Link
-                    to="/auth"
-                    className="text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light pt-2 border-t border-border/30"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Sign In
-                  </Link>
-                )
-              )}
-            </nav>
+            {renderMenuItems('flex flex-col space-y-4')}
+            <a
+              href="https://github.com/davideCamp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center my-4 space-x-2 text-left text-foreground/60 hover:text-foreground transition-colors duration-200 font-light"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <Github className="h-4 w-4" />
+              <span>GitHub</span>
+            </a>
+            {renderAuthButton('pt-2')}
           </div>
         )}
       </div>
