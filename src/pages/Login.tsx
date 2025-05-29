@@ -18,9 +18,7 @@ const Login = () => {
     setIsLoading(true);
     
     // Simulate login process
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    console.log('Login attempt:', { email, password });
+    await new Promise(resolve => setTimeout(resolve, 1000));    
     setIsLoading(false);
     
     // Here you would typically handle the actual login logic

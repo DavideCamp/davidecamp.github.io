@@ -1,22 +1,37 @@
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Send } from 'lucide-react';
+import { getSimpleResponse } from '@/api/gemini';
 
 const AIChat = () => {
   const [inputText, setInputText] = useState('');
 
   const handleSubmit = () => {
     if (!inputText.trim()) return;
-    
+
     // Here you can add logic to show/hide or move elements based on user input
     console.log('User input:', inputText);
-    
+    getSimpleResponse(inputText).then((response) => {
+      setInputText(response.text);
+    })
     // Clear the textarea after submission
     setInputText('');
   };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log('This runs every 10 seconds!');
+      // getSimpleResponse('ciao puoi crearmi un post su un argomento del momento?').then((response) => {
+      //   console.log(response.text);
+      // })
+    }, 10000); // 10,000 ms = 10 seconds
+
+    // Cleanup when the component unmounts
+    return () => clearInterval(interval);
+  }, []);
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
@@ -47,9 +62,9 @@ const AIChat = () => {
                 placeholder="Type your question or request here..."
                 className="min-h-[120px] border-0 bg-background/50 text-base resize-none focus:ring-1 focus:ring-primary/20"
               />
-              
+
               <div className="flex justify-center md:justify-end">
-                <Button 
+                <Button
                   onClick={handleSubmit}
                   disabled={!inputText.trim()}
                   className="bg-primary/90 hover:bg-primary text-primary-foreground px-8"
@@ -58,7 +73,7 @@ const AIChat = () => {
                   Submit
                 </Button>
               </div>
-              
+
               <p className="text-xs text-muted-foreground text-center">
                 Press Ctrl+Enter (⌘+Enter on Mac) to submit quickly
               </p>
