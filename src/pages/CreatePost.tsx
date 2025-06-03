@@ -14,6 +14,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from 'next-themes';
 import { Link } from 'react-router-dom';
+import { getSchedulePost } from '@/hooks/useSchedulePost';
 
 const CreatePost = () => {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ const CreatePost = () => {
   const { data: existingPost, isLoading: isLoadingPost } = usePost(slug || '');
   const createPostMutation = useCreatePost();
   const updatePostMutation = useUpdatePost();
+
 
   const [mounted, setMounted] = useState(false);
   const [formData, setFormData] = useState({
@@ -97,46 +99,33 @@ const CreatePost = () => {
       .trim();
   };
 
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
 
     if (!formData.title.trim() || !formData.content.trim()) {
       return;
     }
-
-    try {
-      if (isEditing && existingPost) {
-        await updatePostMutation.mutateAsync({
-          id: existingPost.id,
-          updates: {
-            title: formData.title,
-            content: formData.content,
-            excerpt: formData.excerpt || null,
-            category: formData.category || null,
-            read_time: formData.read_time || null,
-            published: formData.published,
-            featured: formData.featured,
-          },
-        });
-        navigate(`/blog/${existingPost.slug}`);
-      } else {
-        const slug = generateSlug(formData.title);
-        const newPost = await createPostMutation.mutateAsync({
-          title: formData.title,
-          content: formData.content,
-          excerpt: formData.excerpt || null,
+    getSchedulePost().then(async (res) => {
+      try {
+        const slug = generateSlug(res.title);
+        await createPostMutation.mutateAsync({
+          title: res.title,
+          content: res.content,
+          excerpt: res.description || null,
+          category: res.category || null,
+          read_time: res.readTime || null,
           author_id: user.id,
           slug,
-          category: formData.category || null,
-          read_time: formData.read_time || null,
-          published: formData.published,
-          featured: formData.featured,
+          published: true
         });
         navigate('/blog');
       }
-    } catch (error) {
-      console.error('Error saving post:', error);
-    }
+      catch (error) {
+        console.error('Error saving post:', error);
+      }
+    });
   };
 
   const isLoading = createPostMutation.isPending || updatePostMutation.isPending;
@@ -269,3 +258,7 @@ const CreatePost = () => {
 };
 
 export default CreatePost;
+function useSchedulePost() {
+  throw new Error('Function not implemented.');
+}
+

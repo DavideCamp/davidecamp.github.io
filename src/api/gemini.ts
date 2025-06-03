@@ -22,11 +22,12 @@ Question: ${input}
 
 Respond as Davide would in a friendly, professional conversation, respond in the language of the question:`
 
-export async function getSimpleResponse(input: string) {
+export async function getSimpleResponse(input: string, isPrompt: boolean = true) {
+    const content = isPrompt ?  prompt(input) : input
     try {
         const response = await ai.models.generateContent({
             model: "gemini-2.0-flash",
-            contents: prompt(input),
+            contents: content,
         });
         return response;
     } catch (error) {

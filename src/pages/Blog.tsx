@@ -5,16 +5,19 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Clock, ArrowRight, Plus } from 'lucide-react';
-import { usePosts } from '@/hooks/usePosts';
+import { useCreatePost, usePosts } from '@/hooks/usePosts';
 import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from 'next-themes';
+import { generateSlug, getSchedulePost } from '@/hooks/useSchedulePost';
 
 const BlogPage = () => {
   const { data: posts, isLoading, error } = usePosts();
   const { user, userProfile } = useAuth();
   const [mounted, setMounted] = useState(false);
+  const { mutateAsync: createPostMutation, isPending} = useCreatePost();
+
 
   useEffect(() => {
     setMounted(true);
@@ -57,6 +60,27 @@ const BlogPage = () => {
     );
   }
 
+  function generateNewPost() {
+    getSchedulePost().then(async (res) => {
+      try {
+        const slug = generateSlug(res.title);
+        await createPostMutation({
+          title: res.title,
+          content: res.content,
+          excerpt: res.description || null,
+          category: res.category || null,
+          read_time: res.readTime || null,
+          author_id: user.id,
+          slug,
+          published: true
+        });
+      }
+      catch (error) {
+        console.error('Error saving post:', error);
+      }
+    });
+  }
+
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
       <div className="min-h-screen gradient-bg">
@@ -73,12 +97,10 @@ const BlogPage = () => {
                 </p>
                 {user && userProfile?.role === 'admin' && (
                   <div className="mt-8">
-                    <Link to="/blog/create">
-                      <Button className="font-light">
-                        <Plus className="h-4 w-4 mr-2" />
-                        Create New Post
-                      </Button>
-                    </Link>
+                    <Button disabled={isPending} className="font-light" onClick={generateNewPost}>
+                      <Plus className="h-4 w-4 mr-2" />
+                      Create New Post
+                    </Button>
                   </div>
                 )}
               </div>

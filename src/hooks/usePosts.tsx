@@ -47,6 +47,7 @@ export const useCreatePost = () => {
       });
       console.error('Error creating post:', error);
     },
+    
   });
 };
 
