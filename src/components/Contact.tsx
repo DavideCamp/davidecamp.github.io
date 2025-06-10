@@ -41,19 +41,14 @@ const Contact = () => {
     {
       icon: Mail,
       label: "Email",
-      value: "john@johndoe.dev",
-      href: "mailto:john@johndoe.dev"
+      value: "davidecampana@icloud.com",
+      href: "davidecampana@icloud.com"
     },
-    {
-      icon: Phone,
-      label: "Phone",
-      value: "+1 (555) 123-4567",
-      href: "tel:+15551234567"
-    },
+
     {
       icon: MapPin,
       label: "Location",
-      value: "San Francisco, CA",
+      value: "Rome, IT",
       href: "#"
     }
   ];
@@ -109,7 +104,7 @@ const Contact = () => {
                       />
                     </div>
                   </div>
-                  
+
                   <div>
                     <label htmlFor="subject" className="block text-sm font-light mb-2 text-foreground">
                       Subject
@@ -124,7 +119,7 @@ const Contact = () => {
                       className="border-0 bg-background/50 font-light"
                     />
                   </div>
-                  
+
                   <div>
                     <label htmlFor="message" className="block text-sm font-light mb-2 text-foreground">
                       Message
@@ -140,9 +135,9 @@ const Contact = () => {
                       className="border-0 bg-background/50 font-light resize-none"
                     />
                   </div>
-                  
-                  <Button 
-                    type="submit" 
+
+                  <Button
+                    type="submit"
                     disabled={isSubmitting}
                     className="w-full bg-primary/90 hover:bg-primary text-primary-foreground font-light py-6"
                   >
@@ -168,8 +163,8 @@ const Contact = () => {
               <div>
                 <h3 className="text-2xl font-light mb-6 text-foreground">Let's connect</h3>
                 <p className="text-muted-foreground mb-8 leading-relaxed font-light">
-                  Whether you're looking to collaborate on a project, need technical consultation, 
-                  or just want to chat about technology, I'm always open to interesting conversations 
+                  Whether you're looking to collaborate on a project, need technical consultation,
+                  or just want to chat about technology, I'm always open to interesting conversations
                   and new opportunities.
                 </p>
               </div>
@@ -184,7 +179,7 @@ const Contact = () => {
                         </div>
                         <div>
                           <h4 className="font-light text-foreground">{info.label}</h4>
-                          <a 
+                          <a
                             href={info.href}
                             className="text-muted-foreground hover:text-primary transition-colors font-light"
                           >
@@ -201,7 +196,7 @@ const Contact = () => {
                 <CardContent className="p-0">
                   <h4 className="font-light mb-2 text-foreground">Quick Response</h4>
                   <p className="text-sm text-muted-foreground font-light">
-                    I typically respond to messages within 24 hours. For urgent matters, 
+                    I typically respond to messages within 24 hours. For urgent matters,
                     feel free to reach out via phone or email directly.
                   </p>
                 </CardContent>

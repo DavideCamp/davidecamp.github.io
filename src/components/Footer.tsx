@@ -9,6 +9,10 @@ const Footer = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const navigateTo = (url: string) => {
+    window.open(url, '_blank');
+  };
+
   return (
     <footer className="bg-background border-t border-border/30">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -18,14 +22,14 @@ const Footer = () => {
               Davide Campana
             </h3>
             <p className="text-muted-foreground mb-6 leading-relaxed font-light">
-              Software Developer & AI Enthusiast building innovative solutions 
+              Software Developer & AI Enthusiast building innovative solutions
               at the intersection of technology and creativity.
             </p>
             <div className="flex gap-3">
-              <Button variant="outline" size="icon" className="hover:bg-foreground/5 border-foreground/10">
+              <Button variant="outline" size="icon" onClick={() => navigateTo('https://github.com/davidecamp')} className="hover:bg-foreground/5 border-foreground/10">
                 <Github className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="icon" className="hover:bg-foreground/5 border-foreground/10">
+              <Button variant="outline" size="icon" onClick={() => navigateTo('https://github.com/davidecamp')} className="hover:bg-foreground/5 border-foreground/10">
                 <Mail className="h-4 w-4" />
               </Button>
               <Button variant="outline" size="icon" className="hover:bg-foreground/5 border-foreground/10">
@@ -37,25 +41,25 @@ const Footer = () => {
           <div>
             <h4 className="font-light mb-6 text-foreground">Quick Links</h4>
             <nav className="space-y-3">
-              <button 
+              <button
                 onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
                 className="block text-muted-foreground hover:text-foreground transition-colors font-light"
               >
                 About
               </button>
-              <button 
+              <button
                 onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
                 className="block text-muted-foreground hover:text-foreground transition-colors font-light"
               >
                 Projects
               </button>
-              <button 
+              <button
                 onClick={() => document.getElementById('blog')?.scrollIntoView({ behavior: 'smooth' })}
                 className="block text-muted-foreground hover:text-foreground transition-colors font-light"
               >
                 Blog
               </button>
-              <button 
+              <button
                 onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                 className="block text-muted-foreground hover:text-foreground transition-colors font-light"
               >
@@ -70,7 +74,7 @@ const Footer = () => {
               <p>davidecampana@icloud.it</p>
               <p>Rome, IT</p>
             </div>
-            <Button 
+            <Button
               onClick={scrollToTop}
               variant="outline"
               className="w-full hover:bg-foreground/5 border-foreground/10 font-light"
