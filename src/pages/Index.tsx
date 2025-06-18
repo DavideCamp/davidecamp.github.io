@@ -1,9 +1,9 @@
-
 import { useState, useEffect } from 'react';
 import { ThemeProvider } from 'next-themes';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
 import AIChat from '@/components/AIChat';
+import CodeTranslator from '@/components/CodeTranslator';
 import About from '@/components/About';
 import Projects from '@/components/Projects';
 import Blog from '@/components/Blog';
@@ -28,6 +28,7 @@ const Index = () => {
         <main>
           <Hero />
           <AIChat />
+          <CodeTranslator />
           <About />
           <Projects />
           <Blog />

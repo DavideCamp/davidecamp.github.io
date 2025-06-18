@@ -53,3 +53,22 @@ export async function getContextualResponse(input: string, conversationHistory: 
         throw error;
     }
 }
+
+// AI Code Translator
+export async function translateCodeWithGemini(code: string, sourceLang: string, targetLang: string) {
+    const translationPrompt = `You are an expert software engineer. Translate the following code from ${sourceLang} to ${targetLang}. Only output the translated code, no explanations or comments.
+
+Input (${sourceLang}):\n${code}\n
+Output (${targetLang}):`;
+    try {
+        const response = await ai.models.generateContent({
+            model: "gemini-2.0-flash",
+            contents: translationPrompt,
+        });
+        // Extract the text from the Gemini response
+        return response.text;
+    } catch (error) {
+        console.error('Error translating code:', error);
+        throw error;
+    }
+}
