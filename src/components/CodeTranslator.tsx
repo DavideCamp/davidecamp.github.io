@@ -40,7 +40,7 @@ const CodeTranslator: React.FC = () => {
     setError(null);
     setTranslatedCode('');
     try {
-      const result = await translateCodeWithGemini(inputCode, sourceLang, targetLang);
+      const result = "DO IT YOURSELF"; // await translateCodeWithGemini(inputCode, sourceLang, targetLang);
       setTranslatedCode(result);
     } catch (err: any) {
       setError('Translation failed. Please try again.');
