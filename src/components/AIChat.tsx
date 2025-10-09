@@ -40,16 +40,11 @@ const AIChat = () => {
     addMessage(userMessage, true);
     setIsLoading(true);
 
-    try {
-      const response = await getSimpleResponse(userMessage);
-      // Add AI response
-      addMessage(response.text, false);
-    } catch (error) {
-      console.error('Error getting AI response:', error);
-      addMessage('Sorry, I encountered an error. Please try again.', false);
-    } finally {
+    // Simulate a brief delay for better UX
+    setTimeout(() => {
+      addMessage('Tokens are finished!', false);
       setIsLoading(false);
-    }
+    }, 500);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
