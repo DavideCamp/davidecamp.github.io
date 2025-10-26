@@ -58,26 +58,26 @@ const BlogPage = () => {
     );
   }
 
-  function generateNewPost() {
-    getSchedulePost().then(async (res) => {
-      try {
-        const slug = generateSlug(res.title);
-        await createPostMutation({
-          title: res.title,
-          content: res.content,
-          excerpt: res.description || null,
-          category: res.category || null,
-          read_time: res.readTime || null,
-          author_id: '1',
-          slug,
-          published: true
-        });
-      }
-      catch (error) {
-        console.error('Error saving post:', error);
-      }
-    });
-  }
+  // function generateNewPost() {
+  //   getSchedulePost().then(async (res) => {
+  //     try {
+  //       const slug = generateSlug(res.title);
+  //       await createPostMutation({
+  //         title: res.title,
+  //         content: res.content,
+  //         excerpt: res.description || null,
+  //         category: res.category || null,
+  //         read_time: res.readTime || null,
+  //         author_id: '1',
+  //         slug,
+  //         published: true
+  //       });
+  //     }
+  //     catch (error) {
+  //       console.error('Error saving post:', error);
+  //     }
+  //   });
+  // }
 
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
