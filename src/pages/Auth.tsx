@@ -6,9 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Eye, EyeOff, ArrowLeft } from 'lucide-react';
-import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { useAuth } from '@/contexts/AuthContext';
 import { useEffect } from 'react';
 
 const Auth = () => {
@@ -20,73 +18,75 @@ const Auth = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
   const navigate = useNavigate();
-  const { user } = useAuth();
-
-  // Redirect if already authenticated
-  useEffect(() => {
-    if (user) {
-      navigate('/');
-    }
-  }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
-    try {
-      if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({
-          email,
-          password,
-        });
-
-        if (error) {
-          toast({
-            title: 'Login failed',
-            description: error.message,
-            variant: 'destructive',
-          });
-        } else {
-          toast({
-            title: 'Welcome back!',
-            description: 'You have been signed in successfully.',
-          });
-          navigate('/');
-        }
-      } else {
-        const { error } = await supabase.auth.signUp({
-          email,
-          password,
-          options: {
-            data: {
-              full_name: fullName,
-            },
-          },
-        });
-
-        if (error) {
-          toast({
-            title: 'Sign up failed',
-            description: error.message,
-            variant: 'destructive',
-          });
-        } else {
-          toast({
-            title: 'Account created!',
-            description: 'Welcome! You have been signed up successfully.',
-          });
-          navigate('/');
-        }
-      }
-    } catch (error) {
+    // Simulate login process
+    await new Promise(error => {
       toast({
-        title: 'An error occurred',
-        description: 'Please try again later.',
+        title: 'Login failed',
+        description: 'BE is down, Sorry mate!',
         variant: 'destructive',
-      });
-    } finally {
-      setIsLoading(false);
-    }
+      })
+    });
+    setIsLoading(false);
+
+    // try {
+    //   if (isLogin) {
+    //     const { error } = await supabase.auth.signInWithPassword({
+    //       email,
+    //       password,
+    //     });
+
+    //     if (error) {
+    //       toast({
+    //         title: 'Login failed',
+    //         description: error.message,
+    //         variant: 'destructive',
+    //       });
+    //     } else {
+    //       toast({
+    //         title: 'Welcome back!',
+    //         description: 'You have been signed in successfully.',
+    //       });
+    //       navigate('/');
+    //     }
+    //   } else {
+    //     const { error } = await supabase.auth.signUp({
+    //       email,
+    //       password,
+    //       options: {
+    //         data: {
+    //           full_name: fullName,
+    //         },
+    //       },
+    //     });
+
+    //     if (error) {
+    //       toast({
+    //         title: 'Sign up failed',
+    //         description: error.message,
+    //         variant: 'destructive',
+    //       });
+    //     } else {
+    //       toast({
+    //         title: 'Account created!',
+    //         description: 'Welcome! You have been signed up successfully.',
+    //       });
+    //       navigate('/');
+    //     }
+    //   }
+    // } catch (error) {
+    //   toast({
+    //     title: 'An error occurred',
+    //     description: 'Please try again later.',
+    //     variant: 'destructive',
+    //   });
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   return (

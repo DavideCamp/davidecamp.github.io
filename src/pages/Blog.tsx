@@ -6,7 +6,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Clock, ArrowRight, Plus } from 'lucide-react';
 import { useCreatePost, usePosts } from '@/hooks/usePosts';
-import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from 'next-themes';
@@ -14,7 +13,6 @@ import { generateSlug, getSchedulePost } from '@/hooks/useSchedulePost';
 
 const BlogPage = () => {
   const { data: posts, isLoading, error } = usePosts();
-  const { user, userProfile } = useAuth();
   const [mounted, setMounted] = useState(false);
   const { mutateAsync: createPostMutation, isPending} = useCreatePost();
 
@@ -70,7 +68,7 @@ const BlogPage = () => {
           excerpt: res.description || null,
           category: res.category || null,
           read_time: res.readTime || null,
-          author_id: user.id,
+          author_id: '1',
           slug,
           published: true
         });
@@ -95,14 +93,14 @@ const BlogPage = () => {
                 <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-light">
                   Insights, tutorials, and thoughts on software development, AI, and emerging technologies.
                 </p>
-                {user && userProfile?.role === 'admin' && (
+                {/* {user && userProfile?.role === 'admin' && (
                   <div className="mt-8">
                     <Button disabled={isPending} className="font-light" onClick={generateNewPost}>
                       <Plus className="h-4 w-4 mr-2" />
                       Create New Post
                     </Button>
                   </div>
-                )}
+                )} */}
               </div>
 
               {posts && posts.length > 0 ? (
@@ -169,7 +167,8 @@ const BlogPage = () => {
                   <p className="text-muted-foreground font-light">
                     No blog posts available yet.
                   </p>
-                  {user && (
+                  {/* user */}
+                  {false && (
                     <Link to="/blog/create" className="mt-4 inline-block">
                       <Button className="font-light">
                         <Plus className="h-4 w-4 mr-2" />

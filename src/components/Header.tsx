@@ -4,17 +4,15 @@ import { useTheme } from 'next-themes';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Sun, Moon, Menu, X, User, LogOut, Github } from 'lucide-react';
-import { useAuth } from '@/contexts/AuthContext';
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, signOut, loading } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleSignOut = async () => {
-    await signOut();
+  const handleSignOut =  () => {
+    
     setIsMenuOpen(false);
   };
 
@@ -59,11 +57,11 @@ const Header = () => {
 
   const renderAuthButton = (style?: string) => (
     <div className={`${style} space-y-4 border-t border-border/30`}>
-      {user ? (
+      {false ? (
         <>
           <div className="flex items-center space-x-2 text-foreground/60">
             <User className="h-4 w-4" />
-            <span className="text-sm font-light">{user.email}</span>
+            <span className="text-sm font-light">John Doe</span>
           </div>
           <button
             onClick={handleSignOut}

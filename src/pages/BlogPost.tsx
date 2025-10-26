@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Clock, ArrowLeft, Edit, Trash2 } from 'lucide-react';
 import { usePost, useDeletePost } from '@/hooks/usePosts';
-import { useAuth } from '@/contexts/AuthContext';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ThemeProvider } from 'next-themes';
@@ -14,7 +13,6 @@ const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const navigate = useNavigate();
   const { data: post, isLoading, error } = usePost(slug!);
-  const { user, userProfile } = useAuth();
   const deletePostMutation = useDeletePost();
   const [mounted, setMounted] = useState(false);
 
@@ -25,7 +23,7 @@ const BlogPost = () => {
   const handleDelete = async () => {
     if (post && window.confirm('Are you sure you want to delete this post?')) {
       try {
-        await deletePostMutation.mutateAsync(post.id);
+        await deletePostMutation.mutateAsync('1');
         navigate('/blog');
       } catch (error) {
         console.error('Error deleting post:', error);
@@ -76,7 +74,7 @@ const BlogPost = () => {
     );
   }
 
-  const isAuthor = user?.id === post.author_id;
+  const isAuthor = false;
 
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem>

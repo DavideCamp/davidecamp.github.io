@@ -1,13 +1,15 @@
-import { getSimpleResponse } from "@/api/gemini";
 
 const prompt = import.meta.env.VITE_PROMPT_BLOG as string
 
 
 export function getSchedulePost() {
-    return getSimpleResponse(prompt, false).then(response => {
-        console.log(response.text)
-        return parseBlogPost(response.text);
-    });
+    return {
+        title: 'Blog Post Title',
+        description: 'Blog Post Description',
+        category: 'Blog Post Category',
+        readTime: 'Blog Post Read Time',
+        content: prompt,
+    };
 }
 
 

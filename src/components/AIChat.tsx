@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Textarea } from '@/components/ui/textarea';
 import { Send, Bot, User } from 'lucide-react';
-import { getSimpleResponse } from '@/api/gemini';
 import { useTheme } from 'next-themes';
 
 interface Message {
