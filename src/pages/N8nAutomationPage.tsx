@@ -1,13 +1,13 @@
-import { TopBar } from '@/components/n8n/TopBar';
-import { MarqueeStrip } from '@/components/n8n/MarqueeStrip';
-import { HeroSection } from '@/components/n8n/HeroSection';
-import { HowItWorksSection } from '@/components/n8n/HowItWorksSection';
-import { ServicesSection } from '@/components/n8n/ServicesSection';
-import { UseCasesSection } from '@/components/n8n/UseCasesSection';
-import { FooterSection } from '@/components/n8n/FooterSection';
-import { ParallaxBlock } from '@/components/n8n/ParallaxBlock';
-import { SectionReveal } from '@/components/n8n/SectionReveal';
-import { PageIntro } from '@/components/n8n/PageIntro';
+import { TopBar } from '../components/n8n/TopBar';
+import { MarqueeStrip } from '../components/n8n/MarqueeStrip';
+import { HeroSection } from '../components/n8n/HeroSection';
+import { HowItWorksSection } from '../components/n8n/HowItWorksSection';
+import { ServicesSection } from '../components/n8n/ServicesSection';
+import { UseCasesSection } from '../components/n8n/UseCasesSection';
+import { FooterSection } from '../components/n8n/FooterSection';
+import { ParallaxBlock } from '../components/n8n/ParallaxBlock';
+import { SectionReveal } from '../components/n8n/SectionReveal';
+import { PageIntro } from '../components/n8n/PageIntro';
 import { useEffect, useState } from 'react';
 
 const N8nAutomationPage = () => {

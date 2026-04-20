@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { cn } from '@/lib/utils';
+import { cn } from '../../lib/utils';
 import { Bell, Check, Clock3, Filter, Link2, Mail, Split, Webhook } from 'lucide-react';
 
 interface AutomationSceneProps {
@@ -109,6 +109,7 @@ const NodeLiveBadge = ({ status }: { status: NodeStatus }) => {
 
 export const AutomationScene = ({ className }: AutomationSceneProps) => {
   const [step, setStep] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const [positions, setPositions] = useState<Record<string, Position>>(() => {
     const map: Record<string, Position> = {};
     nodes.forEach((node) => {
@@ -129,6 +130,17 @@ export const AutomationScene = ({ className }: AutomationSceneProps) => {
   const [boardWidth, setBoardWidth] = useState(0);
   const [boardHeight, setBoardHeight] = useState(0);
   const [anchors, setAnchors] = useState<Record<string, NodeAnchors>>({});
+
+  useEffect(() => {
+    const syncMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    syncMobile();
+    window.addEventListener('resize', syncMobile);
+
+    return () => window.removeEventListener('resize', syncMobile);
+  }, []);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -299,6 +311,56 @@ export const AutomationScene = ({ className }: AutomationSceneProps) => {
         <div className="pill border-emerald-200/70 bg-emerald-100/60 text-emerald-700">Drag nodes enabled</div>
       </div>
 
+      {isMobile ? (
+        <div className="relative z-10 px-3 py-4">
+          <div className="space-y-3">
+            {nodes.map((node, index) => {
+              const Icon = iconByNodeId[node.id];
+              const status = nodeStatuses[node.id];
+              const isRunning = status === 'running';
+
+              return (
+                <div key={node.id}>
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.35, delay: 0.05 * index }}
+                    className={cn(
+                      'relative w-full rounded-xl border bg-gradient-to-br px-3 py-3 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),0_10px_25px_-16px_rgba(15,23,42,0.4)] backdrop-blur-xl',
+                      toneByType[node.type],
+                    )}
+                  >
+                    <div className="mb-2 flex items-center justify-between gap-2">
+                      <div className="inline-flex items-center gap-1.5 rounded-md border border-white/65 bg-white/45 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-600 backdrop-blur dark:border-white/15 dark:bg-slate-800/45 dark:text-slate-300">
+                        <Icon className="h-3 w-3" />
+                        {node.type}
+                      </div>
+                      <NodeLiveBadge status={status} />
+                    </div>
+
+                    <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">{node.title}</p>
+                    <p className="mt-1 text-xs text-slate-600 dark:text-slate-300">{node.subtitle}</p>
+
+                    {isRunning && (
+                      <motion.div
+                        className="absolute inset-0 rounded-xl bg-blue-400/10 dark:bg-blue-300/12"
+                        animate={{ opacity: [0.12, 0.42, 0.12] }}
+                        transition={{ duration: 1.1, repeat: Infinity }}
+                      />
+                    )}
+                  </motion.div>
+
+                  {index < nodes.length - 1 && (
+                    <div className="my-2 flex justify-center">
+                      <div className="h-4 w-[2px] rounded-full bg-gradient-to-b from-blue-300 to-emerald-300 dark:from-blue-600 dark:to-emerald-600" />
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      ) : (
       <div ref={boardRef} className="relative z-10 h-[380px] md:h-[560px]">
         <svg preserveAspectRatio="none" viewBox={`0 0 ${SVG_WIDTH} ${SVG_HEIGHT}`} className="absolute inset-0 h-full w-full">
           <defs>
@@ -392,6 +454,7 @@ export const AutomationScene = ({ className }: AutomationSceneProps) => {
           );
         })}
       </div>
+      )}
 
       <div className="relative z-10 grid grid-cols-2 border-t border-white/60 bg-white/30 px-4 py-3 text-xs text-slate-600 backdrop-blur-xl dark:border-white/12 dark:bg-slate-900/30 dark:text-slate-300 md:flex md:items-center md:justify-between md:px-6">
         <span>Execution status: {step === nodes.length + 1 ? 'Cycle complete' : 'Running'}</span>
