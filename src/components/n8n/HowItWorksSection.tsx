@@ -5,18 +5,18 @@ import { SectionHeader } from './SectionHeader';
 const steps = [
   {
     icon: UserPlus,
-    title: 'Connect sources',
-    copy: 'Collega lead form, CRM e canali inbound in pochi minuti.',
+    title: 'Mappiamo il processo',
+    copy: 'Analizziamo dove perdi tempo: passaggi manuali, colli di bottiglia e tool scollegati.',
   },
   {
     icon: Mail,
-    title: 'Build flows',
-    copy: 'Definiamo regole e sequenze automatiche per ogni trigger operativo.',
+    title: 'Costruiamo il workflow',
+    copy: 'Definiamo trigger, regole e integrazioni per far lavorare i sistemi in automatico.',
   },
   {
     icon: BarChart3,
-    title: 'Track results',
-    copy: 'Monitora conversioni e performance con dashboard e report automatici.',
+    title: 'Misuriamo i risultati',
+    copy: 'Monitoriamo tempi, errori e output per migliorare continuamente il flusso.',
   },
 ];
 
@@ -26,9 +26,9 @@ export const HowItWorksSection = () => {
       <div className="mx-auto max-w-7xl">
         <SectionHeader
           index="01"
-          eyebrow="How it works"
-          title="Getting started is simple."
-          subtitle="Un processo in 3 step per attivare automazioni n8n in produzione senza attriti."
+          eyebrow="Come funziona"
+          title="Un metodo semplice, orientato al risultato."
+          subtitle="In pochi step passiamo dall’analisi al rilascio di automazioni concrete, stabili e misurabili."
         />
 
         <div className="mt-14 grid gap-5 md:grid-cols-3">

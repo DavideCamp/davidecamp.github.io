@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-const text = 'Trusted by growing teams • Fast setup • No-code automation • Built with n8n •';
+const text = 'Meno attività manuali • Più tempo per vendite e clienti • Workflow su misura • Integrazioni API •';
 
 export const MarqueeStrip = () => {
   return (

@@ -14,20 +14,20 @@ export const HeroSection = () => {
           transition={{ duration: 0.5 }}
           className="pill"
         >
-          <Sparkles className="mr-2 h-3.5 w-3.5 text-blue-600" /> Ranked #1 automation setup for small teams
+          <Sparkles className="mr-2 h-3.5 w-3.5 text-blue-600" /> Automazioni operative per aziende e freelance
         </motion.div>
 
-        <h1 className="mt-6 max-w-5xl text-balance text-4xl leading-[1.02] text-slate-900 dark:text-slate-100 md:text-7xl">
-          <AnimatedWords text="Automazioni n8n, senza complessità." />
+        <h1 className="mt-6 mb-2 max-w-5xl text-balance text-4xl text-slate-900 dark:text-slate-100 md:mb-3 md:text-7xl">
+          <AnimatedWords  className='pb-2' text="Automatizza il lavoro operativo, senza aggiungere complessità." />
         </h1>
 
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="mt-6 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-300 md:text-xl"
+          className="mt-4 max-w-3xl text-lg leading-relaxed text-slate-600 dark:text-slate-300 md:mt-5 md:text-xl"
         >
-          Progettiamo workflow che collegano tool, API e dati in modo semplice: meno operazioni manuali, più risultati.
+          Progettiamo workflow che collegano i tuoi strumenti e i tuoi dati: riduci attività ripetitive, errori e tempi di risposta.
         </motion.p>
 
         <motion.div
@@ -41,15 +41,14 @@ export const HeroSection = () => {
             <ArrowRight className="ml-2 h-4 w-4" />
           </a>
           <a href="#come-funziona" className="soft-btn">
-            Learn more
+            Scopri come funziona
           </a>
-          <span className="text-sm text-slate-500 dark:text-slate-400">No credit card required.</span>
+          <span className="text-sm text-slate-500 dark:text-slate-400">Analisi iniziale senza impegno.</span>
         </motion.div>
 
         <ParallaxBlock distance={24} className="mt-12 md:mt-14">
-          <div className="surface-card p-3 md:p-4">
+          
             <AutomationScene className="h-[52vh] min-h-[460px] rounded-2xl md:h-[68vh]" />
-          </div>
         </ParallaxBlock>
       </div>
     </section>

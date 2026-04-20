@@ -44,7 +44,7 @@ interface NodeAnchors {
 
 const nodes: FlowNode[] = [
   { id: 'trigger', x: 8, y: 26, title: 'Webhook Trigger', subtitle: 'New Lead', type: 'trigger' },
-  { id: 'filter', x: 30, y: 16, title: 'IF / Qualify', subtitle: 'Score > 70', type: 'logic' },
+  { id: 'filter', x: 30, y: 16, title: 'Check Document', subtitle: 'User Data', type: 'logic' },
   { id: 'enrich', x: 30, y: 64, title: 'API Enrichment', subtitle: 'Company Data', type: 'action' },
   { id: 'crm', x: 54, y: 40, title: 'CRM Sync', subtitle: 'Create Deal', type: 'action' },
   { id: 'notify', x: 78, y: 18, title: 'Slack Notify', subtitle: 'Sales Team', type: 'output' },
@@ -306,7 +306,7 @@ export const AutomationScene = ({ className }: AutomationSceneProps) => {
             animate={{ scale: [1, 1.35, 1], opacity: [0.7, 1, 0.7] }}
             transition={{ duration: 1.2, repeat: Infinity }}
           />
-          <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">n8n Workflow Builder</p>
+          <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">Workflow Builder</p>
         </div>
         <div className="pill border-emerald-200/70 bg-emerald-100/60 text-emerald-700">Drag nodes enabled</div>
       </div>

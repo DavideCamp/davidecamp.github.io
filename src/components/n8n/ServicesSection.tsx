@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { SectionHeader } from './SectionHeader';
-import { WorkflowMock } from './WorkflowMock';
+import { ServicesOutcomePanel } from './ServicesOutcomePanel';
 
 const features = [
   {
@@ -27,9 +27,9 @@ export const ServicesSection = () => {
       <div className="mx-auto max-w-7xl">
         <SectionHeader
           index="02"
-          eyebrow="Features"
-          title="Built for speed, clarity and control."
-          subtitle="Le funzionalità principali per far funzionare la tua macchina operativa in automatico."
+          eyebrow="Servizi"
+          title="Automazioni pensate per il tuo contesto reale."
+          subtitle="Non template standard: progettiamo flussi su misura in base ai tuoi obiettivi operativi e commerciali."
         />
 
         <div className="mt-14 grid items-start gap-6 lg:grid-cols-[1fr_1.05fr]">
@@ -57,7 +57,7 @@ export const ServicesSection = () => {
             transition={{ duration: 0.65 }}
             className="surface-card p-5"
           >
-            <WorkflowMock />
+            <ServicesOutcomePanel />
           </motion.div>
         </div>
       </div>
