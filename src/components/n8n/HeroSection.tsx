@@ -48,7 +48,7 @@ export const HeroSection = () => {
 
         <ParallaxBlock distance={24} className="mt-12 md:mt-14">
           
-            <AutomationScene className="h-[52vh] min-h-[460px] rounded-2xl md:h-[68vh]" />
+            <AutomationScene className="h-auto min-h-[560px] rounded-2xl md:h-[68vh] md:min-h-[460px]" />
         </ParallaxBlock>
       </div>
     </section>

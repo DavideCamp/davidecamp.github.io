@@ -41,7 +41,7 @@ export const TopBar = ({ isDark, onToggleTheme }: TopBarProps) => {
           >
             {isDark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
           </button>
-          <a href="#contatti" className="primary-btn py-2.5 text-xs md:text-sm">
+          <a href="#contatti" className="primary-btn !py-0 text-center text-xs md:text-sm">
             Prenota una call
           </a>
         </div>
