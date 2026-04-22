@@ -6,7 +6,7 @@ import { ParallaxBlock } from './ParallaxBlock';
 
 export const HeroSection = () => {
   return (
-    <section className="relative overflow-hidden px-5 pb-16 pt-14 md:px-8 md:pb-24 md:pt-18">
+    <section id="hero" className="relative overflow-hidden px-5 pb-16 pt-14 md:px-8 md:pb-24 md:pt-18">
       <div className="mx-auto max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 14 }}
@@ -17,8 +17,8 @@ export const HeroSection = () => {
           <Sparkles className="mr-2 h-3.5 w-3.5 text-blue-600" /> Automazioni operative per aziende e freelance
         </motion.div>
 
-        <h1 className="mt-6 mb-2 max-w-5xl text-balance text-4xl text-slate-900 dark:text-slate-100 md:mb-3 md:text-7xl">
-          <AnimatedWords  className='pb-2' text="Automatizza il lavoro operativo, senza aggiungere complessità." />
+        <h1 className="mt-6 mb-2 max-w-5xl text-balance text-4xl leading-[1.08] text-slate-900 dark:text-slate-100 md:mb-3 md:text-7xl md:leading-[1.04]">
+          <AnimatedWords className="pb-2" text="Automatizza il lavoro operativo, senza aggiungere complessità." />
         </h1>
 
         <motion.p

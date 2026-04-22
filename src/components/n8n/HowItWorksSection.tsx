@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { UserPlus, Mail, BarChart3 } from 'lucide-react';
 import { SectionHeader } from './SectionHeader';
+import { N8nNode3D } from './N8nNode3D';
 
 const steps = [
   {
@@ -25,6 +26,7 @@ export const HowItWorksSection = () => {
     <section id="come-funziona" className="section-divider px-5 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-7xl">
         <SectionHeader
+          sectionId="come-funziona"
           index="01"
           eyebrow="Come funziona"
           title="Un metodo semplice, orientato al risultato."
@@ -54,6 +56,27 @@ export const HowItWorksSection = () => {
             );
           })}
         </div>
+
+        {/* <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.65 }}
+          className="surface-card mt-8 p-4 md:p-6"
+        >
+          <div className="mb-3 flex items-center justify-between gap-3">
+            <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">3D Node Preview</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">3 nodes draggable</p>
+          </div>
+          <N8nNode3D
+            title="Webhook"
+            inputCount={1}
+            outputCount={2}
+            headerColor="#3b82f6"
+            bodyColor="#111827"
+            className="h-[220px] md:h-[260px]"
+          />
+        </motion.div> */}
       </div>
     </section>
   );

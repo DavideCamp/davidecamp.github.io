@@ -26,6 +26,7 @@ export const ServicesSection = () => {
     <section id="servizi" className="section-divider px-5 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-7xl">
         <SectionHeader
+          sectionId="servizi"
           index="02"
           eyebrow="Servizi"
           title="Automazioni pensate per il tuo contesto reale."

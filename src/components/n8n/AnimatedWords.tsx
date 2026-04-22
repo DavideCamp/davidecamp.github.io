@@ -25,7 +25,7 @@ export const AnimatedWords = ({ text, className, delay = 0 }: AnimatedWordsProps
       className={className}
     >
       {words.map((word, index) => (
-        <span key={`${word}-${index}`} className="mr-[0.26em] inline-block overflow-hidden align-bottom">
+        <span key={`${word}-${index}`} className="mr-[0.26em] inline-block overflow-hidden pb-[0.14em] align-bottom">
           <motion.span
             variants={{
               hidden: { y: '110%', opacity: 0 },

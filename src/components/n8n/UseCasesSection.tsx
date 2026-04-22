@@ -84,6 +84,7 @@ export const UseCasesSection = () => {
     <section id="casi-uso" className="section-divider px-5 py-20 md:px-8 md:py-28">
       <div className="mx-auto max-w-7xl">
         <SectionHeader
+          sectionId="casi-uso"
           index="03"
           eyebrow="Use cases"
           title="Capisci in 30 secondi quale automazione ti serve"
